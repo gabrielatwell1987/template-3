@@ -13,7 +13,7 @@
 	h3 {
 		text-align: center;
 		margin-top: 20%;
-		font-weight: 300;
+		font-weight: 800;
 		transition:
 			scale 0.3s ease,
 			color 0.3s ease;

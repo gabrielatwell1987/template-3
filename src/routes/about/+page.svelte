@@ -1,6 +1,22 @@
 <script>
 	import Title from '$lib/Title.svelte';
 	import Image from '$lib/Image.svelte';
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+
+	onMount(() => {
+		const image = document.querySelector('.image');
+
+		gsap.set(image, { x: -30 });
+
+		image.addEventListener('mouseover', () => {
+			gsap.to(image, { duration: 1, scale: 1.25, x: 75 });
+		});
+
+		image.addEventListener('mouseleave', () => {
+			gsap.to(image, { duration: 1, scale: 1, x: -30 });
+		});
+	});
 </script>
 
 <div class="title">
@@ -50,7 +66,6 @@
 
 	.flex {
 		display: flex;
-		/* justify-content: center; */
 		gap: 1rem;
 		margin-top: 3%;
 		margin-left: -15%;
@@ -58,9 +73,9 @@
 
 	.left-content {
 		width: 45%;
-		border: 1px solid aliceblue;
+		border: 2px solid aliceblue;
 		border-radius: 0.15rem;
-		padding: 0.75rem 1rem;
+		padding: 1rem 1.5rem;
 		font-weight: 600;
 		letter-spacing: 5px;
 		line-height: 1.75;
@@ -70,9 +85,9 @@
 
 	.right-content {
 		width: 45%;
-		border: 1px solid aliceblue;
+		border: 2px solid aliceblue;
 		border-radius: 0.15rem;
-		padding: 0.75rem 1.5rem;
+		padding: 1rem 1.5rem;
 		font-weight: 600;
 		letter-spacing: 5px;
 		line-height: 1.75;

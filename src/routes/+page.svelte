@@ -1,6 +1,28 @@
 <script>
 	import Title from '$lib/Title.svelte';
 	import Image from '$lib/Image.svelte';
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+
+	onMount(() => {
+		const title = document.querySelector('.title');
+		const content = document.querySelector('.content');
+		const img = document.querySelector('.img');
+
+		gsap.set([title, content, img], { opacity: 1 });
+		gsap.set(img, { scale: 1.25, x: 150, y: -100 });
+
+		const tl = gsap.timeline({ defaults: { ease: 'expo' } });
+		tl.from(title, { duration: 2.5, x: -100, opacity: 0 })
+			.from(content, { duration: 2, x: 100, opacity: 0 })
+			.from(img, {
+				duration: 3,
+				scale: 1,
+				y: 0,
+				opacity: 0,
+				transformOrigin: 'center center'
+			});
+	});
 </script>
 
 <div class="title">
@@ -29,9 +51,15 @@
 
 <style>
 	p {
-		margin: 5% 0 3% 50%;
-		letter-spacing: 3px;
+		margin: 3% 0 3% 50%;
+		letter-spacing: 5px;
 		line-height: 1.75;
+		font-size: 1.1rem;
+		font-weight: 300;
+	}
+
+	.content {
+		margin-top: -1%;
 	}
 
 	.image {
@@ -41,7 +69,7 @@
 	.img {
 		height: auto;
 		position: absolute;
-		top: -325px;
+		top: -240px;
 		left: 250px;
 		border-radius: 0.25rem;
 	}
